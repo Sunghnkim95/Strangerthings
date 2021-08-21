@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 import Posts from './components/post.js';
 import Login from './components/login.js';
@@ -9,32 +10,42 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userToken, setUserToken] = useState('')
 
-  return <div id="app">
-  
-  <Posts
-    isLoggedIn = {isLoggedIn}
-    setIsLoggedIn = {setIsLoggedIn}
-    userToken = {userToken}
-    setUserToken = {setUserToken}
-  />
+  return <Router>
+    <div id="app">
 
-  <Login
-    isLoggedIn ={isLoggedIn}
-    setIsLoggedIn={setIsLoggedIn}
-    userToken = {userToken}
-    setUserToken = {setUserToken}
-  />
+      <div className="post">
+        <Posts
+          isLoggedIn = {isLoggedIn}
+          setIsLoggedIn = {setIsLoggedIn}
+          userToken = {userToken}
+          setUserToken = {setUserToken}
+        />
+      </div>
 
-  { isLoggedIn ? null : 
-  <Register
-  isLoggedIn ={isLoggedIn}
-  setIsLoggedIn={setIsLoggedIn}
-  userToken = {userToken}
-  setUserToken = {setUserToken}
-  />
-  }
-  
-  </div>
+    <Switch>
+      <Route path="/login">
+        <Login
+          isLoggedIn ={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          userToken = {userToken}
+          setUserToken = {setUserToken}
+        />
+      </Route>
+
+      <Route path="/register">
+        { isLoggedIn ? null : 
+        <Register
+        isLoggedIn ={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        userToken = {userToken}
+        setUserToken = {setUserToken}
+        />
+        }
+      </Route>
+    </Switch>
+    
+    </div>
+  </Router>
 }
     
 

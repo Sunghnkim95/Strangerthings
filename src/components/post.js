@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 
-const Posts = () => {
+const Posts = (isLoggedIn) => {
     const [posts, setPosts] = useState([])
     console.log('posts', posts)
 
@@ -19,6 +19,25 @@ const Posts = () => {
     <h1>
         Posts
     </h1>
+
+    {/* {posts.map( post => <div key={post._id}>
+                       <div className='titlePreview'> Title: {post.title}</div>
+
+                           <button onClick={
+                            () => {
+                                
+                                {posts.map( post => <div key={post._id}>
+                                    <div className='title'> Title: {post.title}</div>
+                                    <div className='location'> Location: {post.location}</div>
+                                    <div className='description'> Description:  {post.description} </div>
+                                     </div>)}
+                                
+                            }}
+                            >View Post Details</button> 
+
+                        
+                        </div>)} */}
+
     {posts.map( post => <div key={post._id}>
                        <div className='title'> Title: {post.title}</div>
                        <div className='location'> Location: {post.location}</div>

@@ -67,6 +67,9 @@ const Login = ({setIsLoggedIn, isLoggedIn, setUserToken, userToken}) => {
                 loginUser(usernameString, passwordString)
             }}
             >Login</button> }
+            <Link className="signup" to="/register">
+                New to Snap Attack? Sign up here!
+            </Link>
         
 
         </div>
