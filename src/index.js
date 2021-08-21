@@ -21,7 +21,7 @@ const App = () => {
           setUserToken = {setUserToken}
         />
       </div>
-
+      <div className="loginandregister">
     <Switch>
       <Route path="/login">
         <Login
@@ -43,7 +43,7 @@ const App = () => {
         }
       </Route>
     </Switch>
-    
+    </div>
     </div>
   </Router>
 }
