@@ -1,9 +1,43 @@
 import React, { useState } from 'react';
 
 
-const Login = () => {
+const Login = ({setIsLoggedIn, isLoggedIn, setUserToken, userToken}) => {
     const [usernameString, setUsernameString] = useState('');
     const [passwordString, setPasswordString] = useState('');
+
+    function loginUser (username, password) {
+
+        fetch(`https://strangers-things.herokuapp.com/api/2105-vpi-web-pt/users/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Authorization': bearer
+            },
+            body: JSON.stringify({
+                user: {
+                    username: username,
+                    password: password
+                }
+            })
+        }).then(response => response.json())
+        .then(result => {
+            
+
+            if(result.success){
+                setIsLoggedIn(true)
+                console.log("token", result.data.token)
+                setUserToken(result.data.token)
+                localStorage.setItem("token", result.data.token)
+            }
+            return result
+        })
+        .catch(console.error)
+    };
+
+    function logoutUser () {
+        setIsLoggedIn(false)
+        setUserToken('')
+    }
 
     return (
         <>
@@ -11,48 +45,33 @@ const Login = () => {
             <h1>Login</h1>
 
             <input className="usernameValue"
-            type="text"
+            type="username"
+            value = {usernameString}
             onChange={function(event){
                 setUsernameString(event.target.value);
             }}>
             </input>
 
             <input className="passwordValue"
-            type="text"
+            type="password"
+            value={passwordString}
             onChange={function(event){
                 setPasswordString(event.target.value);
             }}>
             </input>
+            
+            { isLoggedIn ? <button onClick={()=> {
+                logoutUser()
+            }}
+            >Logout</button>  :  <button onClick={()=> {
+                loginUser(usernameString, passwordString)
+            }}
+            >Login</button> }
+        
 
-            <button onClick={()=>{loginUser(usernameString, passwordString)}}
-            >Login</button>
         </div>
         </>
     )}
-
-async function loginUser(name, pw) {
-
-    await fetch(`https://strangers-things.herokuapp.com/api/2105-vpi-web-pt/users/login`, {
-        method: 'POST',
-        header: {
-            'Content-Type': 'application/json'
-            // 'Authorization': bearer
-        },
-        body: JSON.stringify({
-            user: {
-                username:{name},
-                password:{pw}
-            }
-        })
-    }).then(res => {res.json()
-    // const token = res.token
-
-    console.log(res)}
-
-    ).then(result=>console.log(result)
-)
-    .catch(console.error)
-};
 
 
 export default Login;
