@@ -7,10 +7,51 @@
 
 #app {
     background-color: red;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    overflow: hidden;
+    
 }
 
-.loginandregister {
-  background-color: white;
+.rightviewport {
+  background-color: grey;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr
 }
+
+/* .profileandmessages {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+}
+
+.messages{
+  grid-column-start: 2;
+} */
+
+
+.postdetails .title {
+  font-weight: normal;
+}
+
+.postdetails .description {
+  border: none;
+  margin-bottom: 0;
+}
+
+.title {
+  font-weight:bolder
+}
+
+.description {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.allmyposts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+

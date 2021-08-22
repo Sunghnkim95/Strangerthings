@@ -1,19 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
 import Posts from './components/post.js';
 import Login from './components/login.js';
 import Register from './components/register.js';
+import Postdetails from './components/postdetails.js'
+import Profile from './components/profile.js'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userToken, setUserToken] = useState('')
+  
+  return <div id="app">
+   
 
-  return <Router>
-    <div id="app">
-
-      <div className="post">
+      <div className="PostsScreen">
         <Posts
           isLoggedIn = {isLoggedIn}
           setIsLoggedIn = {setIsLoggedIn}
@@ -21,31 +23,52 @@ const App = () => {
           setUserToken = {setUserToken}
         />
       </div>
-      <div className="loginandregister">
-    <Switch>
-      <Route path="/login">
-        <Login
-          isLoggedIn ={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          userToken = {userToken}
-          setUserToken = {setUserToken}
-        />
-      </Route>
+      
+      <div className="rightviewport">
+        <Router>
+          {isLoggedIn ? <Postdetails /> : <Login isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken = {userToken} setUserToken={setUserToken}/>}
+        
 
-      <Route path="/register">
-        { isLoggedIn ? null : 
-        <Register
-        isLoggedIn ={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        userToken = {userToken}
-        setUserToken = {setUserToken}
-        />
-        }
-      </Route>
-    </Switch>
+
+    {/* {  isLoggedIn ? <Postdetails /> : */}
+      {/* <Router>        
+          <Switch> 
+            <Route path ="/login">
+              <Link className="signup" to='/Register'>
+                New to Snap Attack? Sign up here!
+              </Link> */}
+              {/* <Login                  
+                isLoggedIn ={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                userToken = {userToken}
+                setUserToken = {setUserToken}
+                /> */}
+            {/* </Route>
+            <Route path ="/Register">
+              <Link className="signup" to="/login">
+                  Already have an account? Login here!
+              </Link>
+                <Register
+                isLoggedIn ={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                userToken = {userToken}
+                setUserToken = {setUserToken}
+                />
+            </Route> */}
+            
+          {/* </Switch>
+      </Router> */}
+    {/* }  */}
+    </Router>
+      </div>
+      <div className="profileandmessages">
+        {isLoggedIn ? <Profile /> : null}
+      </div>
+      
+            
     </div>
-    </div>
-  </Router>
+    // </Router>
+  
 }
     
 

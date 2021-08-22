@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+//import {useRouteMatch} from 'react-router-dom';
 
 
 const Register = ({setIsLoggedIn, setUserToken}) => {
     const [usernameString, setUsernameString] = useState('');
     const [passwordString, setPasswordString] = useState('');
-
+    //const {path} = useRouteMatch()
      function registerUser(username, password) {
         
              fetch('https://strangers-things.herokuapp.com/api/2105-vpi-web-pt/users/register', {

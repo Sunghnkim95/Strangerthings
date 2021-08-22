@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 
-const Posts = (isLoggedIn) => {
+const Posts = () => {
     const [posts, setPosts] = useState([])
     console.log('posts', posts)
 
@@ -16,7 +16,7 @@ const Posts = (isLoggedIn) => {
         fetchPosts();
     }, [])
     return <>
-    <h1>
+    <h1 className="posttitle">
         Posts
     </h1>
 
@@ -42,6 +42,7 @@ const Posts = (isLoggedIn) => {
                        <div className='title'> Title: {post.title}</div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='description'> Description:  {post.description} </div>
+                       <button></button> 
                         </div>)}
     </>
 

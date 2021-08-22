@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Link, Switch } from 'react-router-dom';
 
 
 const Login = ({setIsLoggedIn, isLoggedIn, setUserToken, userToken}) => {
@@ -60,16 +61,16 @@ const Login = ({setIsLoggedIn, isLoggedIn, setUserToken, userToken}) => {
             }}>
             </input>
             
-            { isLoggedIn ? <button onClick={()=> {
+            {/* { isLoggedIn ? <button onClick={()=> {
                 logoutUser()
             }}
-            >Logout</button>  :  <button onClick={()=> {
+            >Logout</button>  : */}
+              <button onClick={()=> {
                 loginUser(usernameString, passwordString)
-            }}
-            >Login</button> }
-            <Link className="signup" to="/register">
-                New to Snap Attack? Sign up here!
-            </Link>
+            }
+            }
+            >Login</button> <br></br><br></br>
+           
         
 
         </div>
