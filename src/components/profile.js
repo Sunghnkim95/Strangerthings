@@ -1,10 +1,15 @@
 import React from 'react'
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
+import {useState, useEffect} from 'react'
 import Postdetails from './postdetails.js'
 import Userposts from './userposts.js'
 import Messages from './messages.js'
+import Newmessageform from './newmessageform.js'
 
 const Profile = () => {
+
+    const [newMessageForm, renderNewMessageForm] = useState(false)
+
     return (
         <Router>
             <div>
@@ -22,6 +27,7 @@ const Profile = () => {
                     </Route>
                     <Route path="/mymessages">
                         <Messages />
+                        {newMessageForm ? <Newmessageform newMessageForm={newMessageForm} renderNewMessageForm={renderNewMessageForm} /> : null}
                     </Route>
                     <Route exact path="/">
                         HOME COMPONENT GOES HERE

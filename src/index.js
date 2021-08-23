@@ -12,6 +12,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userToken, setUserToken] = useState('')
   const [featuredResult, setFeaturedResult] = useState(null)
+  const [messageForm, renderMessageForm] = useState(false)
   
   return <div id="app">
    
@@ -66,7 +67,8 @@ const App = () => {
     </Router>
       </div>
       <div className="profileandmessages">
-        {isLoggedIn ? <Profile /> : null}
+        {isLoggedIn ? <Profile
+        messageForm={messageForm} renderMessageForm={renderMessageForm} /> : null}
       </div>
       
             
