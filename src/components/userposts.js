@@ -39,7 +39,7 @@ const Userposts = () => {
                     description: descriptionString,
                     price: priceString,
                     location: locationString,
-                    willDeliver: willDeliver.val(),
+                    willDeliver: willDeliver,
                 }
             })
         }).then(response => response.json())
