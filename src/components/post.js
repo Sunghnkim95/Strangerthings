@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 
 
-const Posts = () => {
+const Posts = (props) => {
     const [posts, setPosts] = useState([])
+    const {setFeaturedResult} = props
     console.log('posts', posts)
 
     useEffect(() => {
@@ -20,25 +21,10 @@ const Posts = () => {
         Posts
     </h1>
 
-    {/* {posts.map( post => <div key={post._id}>
-                       <div className='titlePreview'> Title: {post.title}</div>
-
-                           <button onClick={
-                            () => {
-                                
-                                {posts.map( post => <div key={post._id}>
-                                    <div className='title'> Title: {post.title}</div>
-                                    <div className='location'> Location: {post.location}</div>
-                                    <div className='description'> Description:  {post.description} </div>
-                                     </div>)}
-                                
-                            }}
-                            >View Post Details</button> 
-
-                        
-                        </div>)} */}
-
-    {posts.map( post => <div key={post._id}>
+    {posts.map( post => <div key={post._id} onClick={(event) => {
+        event.preventDefault();
+        setFeaturedResult(post)
+    }} >
                        <div className='title'> Title: {post.title}</div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='description'> Description:  {post.description} </div>

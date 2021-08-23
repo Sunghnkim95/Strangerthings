@@ -11,6 +11,7 @@ import Profile from './components/profile.js'
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userToken, setUserToken] = useState('')
+  const [featuredResult, setFeaturedResult] = useState(null)
   
   return <div id="app">
    
@@ -21,12 +22,15 @@ const App = () => {
           setIsLoggedIn = {setIsLoggedIn}
           userToken = {userToken}
           setUserToken = {setUserToken}
+          featuredResult = {featuredResult}
+          setFeaturedResult = {setFeaturedResult}
+
         />
       </div>
       
       <div className="rightviewport">
         <Router>
-          {isLoggedIn ? <Postdetails /> : <Login isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken = {userToken} setUserToken={setUserToken}/>}
+          {isLoggedIn ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken} />  : <Login isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken = {userToken} setUserToken={setUserToken}/>}
         
 
 
