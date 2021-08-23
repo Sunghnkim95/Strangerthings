@@ -7,7 +7,7 @@ const Posts = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-RM-WEB-PT/posts')
+            const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/posts')
             const data = await resp.json()
             const posts = data.data.posts
             setPosts(posts)
