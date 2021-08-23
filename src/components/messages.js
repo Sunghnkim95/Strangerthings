@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 
 const Messages = () => {
     const [messages, setMessages] = useState([])
+    const [recipientID, setRecipientID] = useState('')
     const userToken = localStorage.getItem("token")
     useEffect(() => {
         const fetchMessages = async () => {
@@ -19,6 +20,25 @@ const Messages = () => {
         }
         fetchMessages();
     }, [])
+
+    function sendMessage(recipientID){
+        fetch (`https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/posts/${recipientID}/messages`,{
+            method: "POST",
+            headers: {
+                'Content-Type': application/json,
+                'Authorization': 'Bearer ' + userToken
+            },
+            body: JSON.stringify({
+                message: { 
+                    'content': GETCONTENTHERE
+                }
+            })
+        }).then(result => {
+            console.log(result)
+        }).catch(console.error)
+    }
+
+    
     return <> 
              <div className="sendandreceived">
             
@@ -27,17 +47,18 @@ const Messages = () => {
                        <div className='title'> From: </div>
                        <div className='location'> Time: </div>
                        <div className='description'> Body:  </div>
-                       <button></button> 
+                       <button onClick={()=> {
+                           setRecipientID(message.author._id)
+                           sendMessage(recipientID)
+                       }}>Reply</button> 
                         </div>)}
                      </div>
         
                      <div className="newmessage">
                         CREATE NEW MESSAGE
                          <input></input>
-                         <input></input>
-                         <input></input>
-                         <input></input>
-                         <button></button>
+                        
+                         <button>Send</button>
                      </div>
         
                     

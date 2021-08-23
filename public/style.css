@@ -30,6 +30,9 @@
   grid-column-start: 2;
 } */
 
+.replybtn{
+  margin-bottom: 10px;
+}
 
 .postdetails .title {
   font-weight: normal;
@@ -45,7 +48,6 @@
 }
 
 .description {
-  border-bottom: 1px solid black;
   margin-bottom: 10px;
 }
 

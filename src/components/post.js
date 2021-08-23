@@ -21,14 +21,14 @@ const Posts = (props) => {
         Posts
     </h1>
 
-    {posts.map( post => <div key={post._id} onClick={(event) => {
+    {posts.map( post => <div className="post" key={post._id} onClick={(event) => {
         event.preventDefault();
         setFeaturedResult(post)
     }} >
                        <div className='title'> Title: {post.title}</div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='description'> Description:  {post.description} </div>
-                       <button></button> 
+                       <button className="replybtn">Reply</button> 
                         </div>)}
     </>
 
