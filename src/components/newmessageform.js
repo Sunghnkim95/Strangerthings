@@ -2,14 +2,9 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 const Newmessageform = (props) => {
-    // const [clickedMessage, renderMessageForm] = useState(true)
     const [messageContent, setContent] = useState('')
-    // const [recipientUsername, setRecipientUsername] = useState()
-    // const [recipientTitle, setRecipientTitle] = useState()
-    const {recipientUsername, recipientTitle, postId, clickedMessage, renderMessageForm} = props
+    const { clickedMessage, renderMessageForm, recipientUsername, recipientTitle, postId } = props
     const userToken = localStorage.getItem("token")
-    console.log(userToken)
-    console.log(postId)
     
     function sendMessage(){
         fetch(`https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/posts/${postId}/messages`,{
@@ -31,11 +26,13 @@ const Newmessageform = (props) => {
 function cancelMessage(){
     renderMessageForm(false)
 }
+console.log(postId)
+console.log(userToken)
 
 return <>
    
         <div className="newmessageform">
-            <span>To:{recipientUsername} </span>
+            <span>To:{recipientUsername}  </span>
             <br></br>
             <span>In Response to post: {recipientTitle} </span>
             <br></br>

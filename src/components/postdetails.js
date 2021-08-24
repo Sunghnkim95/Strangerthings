@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import Newmessageform from './newmessageform.js'
 
 const Postdetails = (props) => {
-    const {featuredResult, setIsLoggedIn, setUserToken} = props
+    const {featuredResult, setIsLoggedIn, setUserToken, postId, setPostId, clickedMessage, renderMessageForm} = props
+
+    
 
     function logoutUser () {
         setIsLoggedIn(false)
@@ -24,16 +27,26 @@ const Postdetails = (props) => {
                   <div className="postdetails">
                   <h1>Featured Post</h1>
                 
-                  <div key="firstpost">
+                  <div key="featuredresult">
                               <div className='title'> Title:{featuredResult.title} </div>
                               <div className='price'>Price: {featuredResult.price}</div>
                               <div className='description'>Description: {featuredResult.description}</div>
                               <div className='location'>Location: {featuredResult.location}</div>
                               <div className='willdeliver'>Will Deliver? : {featuredResult.willDeliver}</div>
-                               <button className="replybtn" >Reply</button> 
+                              <button className="replybtn" disabled={clickedMessage} onClick={
+                                  function(){
+                                     renderMessageForm(true)
+                    
+                                  }
+                              }>Reply</button> 
                              <button onClick={()=>{
                                  logoutUser()
+                                 
                              }}>LogOut</button>
+
+                             {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm}  /> : null}
+                             
+                             
                  </div>
              </div>
     

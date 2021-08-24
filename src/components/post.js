@@ -3,8 +3,7 @@ import React, {useState, useEffect} from 'react'
 
 const Posts = (props) => {
     const [posts, setPosts] = useState([])
-    const {setFeaturedResult, isLoggedIn, setIsLoggedIn} = props
-    console.log('posts', posts)
+    const {setFeaturedResult, isLoggedIn, setIsLoggedIn, clickedMessage} = props
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -12,7 +11,6 @@ const Posts = (props) => {
             const data = await resp.json()
             const posts = data.data.posts
             setPosts(posts)
-            console.log(posts)
         }
         fetchPosts();
     }, [])
@@ -26,6 +24,7 @@ const Posts = (props) => {
         setFeaturedResult(post)
     }} >
                        <div className='title'> Title: {post.title}</div>
+                       <div className='usernamee'> Post By: {post.author.username}</div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='description'> Description:  {post.description} </div>
                         </div>

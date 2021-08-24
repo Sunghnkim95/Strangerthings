@@ -59,17 +59,19 @@ const Messages = () => {
         return <>
             <div className="sendandreceived">
                 <div className="received">
-                    {messages.map((message)=> {
+                    {messages.map((message, index)=> {
                             return <> 
-                                        <div className="message">
+                                        <div className="message" key={index}>
                                             <div className="username">From: {message.fromUser.username}</div>
                                             <div className='title'> Title:{message.post.title} </div>
                                             <div className='description'> Body: {message.content} </div>
                                             <button disabled={clickedMessage} onClick ={()=> {
                                                 setPostId(message.post._id)
+                                                console.log(postId)
                                                 setRecipientUsername(message.fromUser.username)
                                                 setRecipientTitle(message.post.title)
-                                                console.log(postId)
+                                                //console.log(recipientUsername)
+                                                console.log(message.fromUser.username)
                                                 renderMessageForm(true)
                                             }}>Reply</button>
                                             
