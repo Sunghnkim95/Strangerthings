@@ -80,7 +80,7 @@ const Messages = () => {
                     })}
                 </div>
                 <div className="newmessageform">
-                       {clickedMessage ? <Newmessageform recipientUsername= {recipientUsername} recipientTitle={recipientTitle} postId={postId} setPostId={setPostId} clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} /> : null}  
+                       {clickedMessage ? <Newmessageform recipientUsername= {recipientUsername} recipientTitle={recipientTitle} postId={postId} setPostId={setPostId} clickedMessage={clickedMessage} renderMessageForm={renderMessageForm}  /> : null}  
                  </div>
             </div> </>
 

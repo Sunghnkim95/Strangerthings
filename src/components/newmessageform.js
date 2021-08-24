@@ -11,7 +11,7 @@ const Newmessageform = (props) => {
     console.log(userToken)
     console.log(postId)
     
-    function sendMessage(messageContent){
+    function sendMessage(){
         fetch(`https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/posts/${postId}/messages`,{
         method: "POST",
         headers: {

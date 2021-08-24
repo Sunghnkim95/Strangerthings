@@ -28,7 +28,7 @@ const Profile = () => {
                     </Route>
                     <Route path="/mymessages">
                         <Messages />
-                        {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm}  /> : null}
+                        {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} messageContent = {messageContent} setContent={setContent}  /> : null}
                     </Route>
                     <Route exact path="/">
                         HOME COMPONENT GOES HERE
