@@ -30,6 +30,11 @@
   grid-column-start: 2;
 } */
 
+.sendandreceived {
+  display: flex;
+  flex-direction: row;
+}
+
 .replybtn{
   margin-bottom: 10px;
 }

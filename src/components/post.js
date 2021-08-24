@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 
 const Posts = (props) => {
     const [posts, setPosts] = useState([])
-    const {setFeaturedResult} = props
+    const {setFeaturedResult, isLoggedIn, setIsLoggedIn} = props
     console.log('posts', posts)
 
     useEffect(() => {
@@ -28,8 +28,9 @@ const Posts = (props) => {
                        <div className='title'> Title: {post.title}</div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='description'> Description:  {post.description} </div>
-                       <button className="replybtn">Reply</button> 
-                        </div>)}
+                        </div>
+                        )
+                        }
     </>
 
 

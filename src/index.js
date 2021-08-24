@@ -12,7 +12,8 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userToken, setUserToken] = useState('')
   const [featuredResult, setFeaturedResult] = useState(null)
-  const [messageForm, renderMessageForm] = useState(false)
+  const [clickedMessage, renderMessageForm] = useState(false)
+  
   
   return <div id="app">
    
@@ -21,8 +22,8 @@ const App = () => {
         <Posts
           isLoggedIn = {isLoggedIn}
           setIsLoggedIn = {setIsLoggedIn}
-          userToken = {userToken}
-          setUserToken = {setUserToken}
+          // userToken = {userToken}
+          // setUserToken = {setUserToken}
           featuredResult = {featuredResult}
           setFeaturedResult = {setFeaturedResult}
 
@@ -31,7 +32,7 @@ const App = () => {
       
       <div className="rightviewport">
         <Router>
-          {isLoggedIn ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken} />  : <Login isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken = {userToken} setUserToken={setUserToken}/>}
+          {isLoggedIn ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken} clickedMessage={clickedMessage}/>  : <Login isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken}/>}
         
 
 
@@ -68,7 +69,7 @@ const App = () => {
       </div>
       <div className="profileandmessages">
         {isLoggedIn ? <Profile
-        messageForm={messageForm} renderMessageForm={renderMessageForm} /> : null}
+        clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} /> : null}
       </div>
       
             

@@ -8,7 +8,8 @@ import Newmessageform from './newmessageform.js'
 
 const Profile = () => {
 
-    const [newMessageForm, renderNewMessageForm] = useState(false)
+    const [clickedMessage, renderMessageForm] = useState()
+    // const [postId, setPostId] = useState('')
 
     return (
         <Router>
@@ -27,7 +28,7 @@ const Profile = () => {
                     </Route>
                     <Route path="/mymessages">
                         <Messages />
-                        {newMessageForm ? <Newmessageform newMessageForm={newMessageForm} renderNewMessageForm={renderNewMessageForm} /> : null}
+                        {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm}  /> : null}
                     </Route>
                     <Route exact path="/">
                         HOME COMPONENT GOES HERE

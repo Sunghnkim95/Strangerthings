@@ -30,6 +30,7 @@ const Postdetails = (props) => {
                               <div className='description'>Description: {featuredResult.description}</div>
                               <div className='location'>Location: {featuredResult.location}</div>
                               <div className='willdeliver'>Will Deliver? : {featuredResult.willDeliver}</div>
+                               <button className="replybtn" >Reply</button> 
                              <button onClick={()=>{
                                  logoutUser()
                              }}>LogOut</button>

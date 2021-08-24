@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Switch } from 'react-router-dom';
 
 
-const Login = ({setIsLoggedIn, isLoggedIn, setUserToken, userToken}) => {
+const Login = ({setIsLoggedIn, isLoggedIn, userToken, setUserToken}) => {
     const [usernameString, setUsernameString] = useState('');
     const [passwordString, setPasswordString] = useState('');
 
@@ -25,9 +25,11 @@ const Login = ({setIsLoggedIn, isLoggedIn, setUserToken, userToken}) => {
             
 
             if(result.success){
+                console.log(result)
                 setIsLoggedIn(true)
                 console.log("token", result.data.token)
                 setUserToken(result.data.token)
+                console.log(userToken)
                 localStorage.setItem("token", result.data.token)
             }
             return result
