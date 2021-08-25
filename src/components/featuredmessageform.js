@@ -1,9 +1,9 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 
-const Newmessageform = (props) => {
+const Featuredmessageform = (props) => {
+
     const [messageContent, setContent] = useState('')
-    const { clickedMessage, renderMessageForm, recipientUsername, recipientTitle, postId } = props
+    const { renderMessageForm, recipientUsername, recipientTitle, postId } = props
     const userToken = localStorage.getItem("token")
     
     function sendMessage(){
@@ -28,12 +28,12 @@ function cancelMessage(){
 }
 console.log(postId)
 console.log(userToken)
-console.log(recipientUsername)
+console.log(messageContent)
 
 return <>
    
         <div className="newmessageform">
-            <span>To: {recipientUsername}  </span>
+            <span>To:{recipientUsername}  </span>
             <br></br>
             <span>In Response to post: {recipientTitle} </span>
             <br></br>
@@ -53,10 +53,5 @@ return <>
                             }}>Cancel</button>
         </div>
      </>
-    
-    
-
 }
-
-
-export default Newmessageform
+export default Featuredmessageform

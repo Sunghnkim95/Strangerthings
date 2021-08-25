@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
+import Editpostform from './editpostform.js'
+
 const Userposts = () => {
     const [myPosts, setMyPosts] = useState([])
     const userToken = localStorage.getItem("token")
@@ -8,6 +10,9 @@ const Userposts = () => {
     const [priceString, setPriceString] = useState('')
     const [locationString, setLocationString] = useState('')
     const [willDeliver, setWillDeliver] = useState(false)
+    const [wantsToEdit, setWantsToEdit] = useState(false)
+    const [myPostTitle, setMyPostTitle] = useState('')
+    const [postId, setPostId] = useState('')
 
     useEffect(() => {
         const fetchMyPosts = async () => {
@@ -48,7 +53,7 @@ const Userposts = () => {
             result})
         
     }
-    console.log(titleString)
+    console.log(myPostTitle)
     return (<>
         <div className="allmyposts">
             
@@ -60,9 +65,11 @@ const Userposts = () => {
                        <div className='description'> Price: {post.price}  </div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='location'> Will Deliver? : {post.willDeliver}</div>
-                       <button></button> 
+                       <button onClick={function (){setWantsToEdit(true), setMyPostTitle(post.title), setPostId(post._id)}}>Edit</button> 
                         </div>)}
             </div>
+
+            {wantsToEdit ? <Editpostform myPostTitle={myPostTitle} wantsToEdit={wantsToEdit} setWantsToEdit={setWantsToEdit} postId={postId}/> : null}
 
             <div className="newpost">
                <h1>CREATE NEW POST</h1>

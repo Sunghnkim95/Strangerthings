@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Newmessageform from './newmessageform.js'
+import Featuredmessageform from './featuredmessageform.js'
 
 const Postdetails = (props) => {
-    const {featuredResult, setIsLoggedIn, setUserToken, postId, setPostId, clickedMessage, renderMessageForm} = props
-
-    
+    const {featuredResult, setIsLoggedIn, setUserToken, clickedMessage, renderMessageForm} = props
+    const [postId, setPostId] = useState('')
+    const [recipientUsername, setRecipientUsername] = useState('')
+    const [recipientTitle, setRecipientTitle] = useState('')
 
     function logoutUser () {
         setIsLoggedIn(false)
@@ -36,7 +37,11 @@ const Postdetails = (props) => {
                               <button className="replybtn" disabled={clickedMessage} onClick={
                                   function(){
                                      renderMessageForm(true)
-                    
+                                     setPostId(featuredResult._id)
+                                     setRecipientUsername(featuredResult.author.username)
+                                     setRecipientTitle(featuredResult.title)
+                                     console.log(recipientUsername)
+                                     console.log(recipientTitle)
                                   }
                               }>Reply</button> 
                              <button onClick={()=>{
@@ -44,7 +49,7 @@ const Postdetails = (props) => {
                                  
                              }}>LogOut</button>
 
-                             {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm}  /> : null}
+                             {clickedMessage ? <Featuredmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} postId={postId} recipientUsername={recipientUsername} recipientTitle={recipientTitle} /> : null}
                              
                              
                  </div>
