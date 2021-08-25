@@ -9,11 +9,11 @@ const Userposts = () => {
     const [descriptionString, setDescriptionString] = useState('')
     const [priceString, setPriceString] = useState('')
     const [locationString, setLocationString] = useState('')
-    const [willDeliver, setWillDeliver] = useState(true)
+    const [willDeliver, setWillDeliver] = useState(false)
     const [wantsToEdit, setWantsToEdit] = useState(false)
     const [myPostTitle, setMyPostTitle] = useState('')
     const [postId, setPostId] = useState('')
-
+    
     useEffect(() => {
         const fetchMyPosts = async () => {
             const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/users/me', {
@@ -44,7 +44,7 @@ const Userposts = () => {
                     description: descriptionString,
                     price: priceString,
                     location: locationString,
-                    willDeliver: willDeliver,
+                    willDeliver: willDeliver
                 }
             })
         }).then(response => response.json())
@@ -68,6 +68,15 @@ const Userposts = () => {
         }
         console.log(willDeliver)
     console.log(myPostTitle)
+
+        function handleChange(){
+            if (document.getElementById("willdeliverselection").checked){
+                setWillDeliver(true)
+            } else {
+                setWillDeliver(false)
+            }
+        }
+
     return (<>
         <div className="allmyposts">
             
@@ -97,14 +106,17 @@ const Userposts = () => {
                 <input className="priceinput" type="text" value={priceString} onChange={event => {setPriceString(event.target.value)}}></input>
                 <label className="newlocation">Location</label>
                 <input className="locationinput" type="text" value={locationString} onChange={event => {setLocationString(event.target.value)}}></input>
-                <label className="newwilldeliver">Will Deliver? :</label>
-                <input className="willdeliverselection" type="checkbox"  onClick={function (event) {event.preventDefault(), setWillDeliver(true), console.log(willDeliver)}}></input>
-                <select className="deliveryoptions">
-                    <option>Yes</option>
-                    <option>No</option>
-                </select>
+                <label className="newwilldeliver">Will Deliver :</label>
+                
+                <input id="willdeliverselection" type="checkbox" onChange={function (event) { setWillDeliver(true)}}></input>
+                <label className="newwilldeliver">Will Not Deliver :</label>
+                <input id="willdeliverselection" type="checkbox" onChange={function (event) { setWillDeliver(false)}}></input>
+                {/* <select>
+                    <option value={true}>True</option>
+                    <option value={false}>False</option>
+                </select>   */}
 
-                {/* <button onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button> */}
+                <button onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button>
 
             </div>
 
