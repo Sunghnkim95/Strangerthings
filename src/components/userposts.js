@@ -9,7 +9,7 @@ const Userposts = () => {
     const [descriptionString, setDescriptionString] = useState('')
     const [priceString, setPriceString] = useState('')
     const [locationString, setLocationString] = useState('')
-    const [willDeliver, setWillDeliver] = useState(false)
+    const [willDeliver, setWillDeliver] = useState(true)
     const [wantsToEdit, setWantsToEdit] = useState(false)
     const [myPostTitle, setMyPostTitle] = useState('')
     const [postId, setPostId] = useState('')
@@ -53,6 +53,20 @@ const Userposts = () => {
             result})
         
     }
+
+        function deletePost (){
+            fetch(`https://strangers-things.herokuapp.com/api/2105-vpi-web-pt/posts/${postId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userToken
+            },
+        }).then(response => response.json())
+        .then( result => {
+            console.log(result)
+            result})
+        }
+        console.log(willDeliver)
     console.log(myPostTitle)
     return (<>
         <div className="allmyposts">
@@ -65,8 +79,10 @@ const Userposts = () => {
                        <div className='description'> Price: {post.price}  </div>
                        <div className='location'> Location: {post.location}</div>
                        <div className='location'> Will Deliver? : {post.willDeliver}</div>
-                       <button onClick={function (){setWantsToEdit(true), setMyPostTitle(post.title), setPostId(post._id)}}>Edit</button> 
+                       <button onClick={function (){setWantsToEdit(true), console.log(post._id),setMyPostTitle(post.title), setPostId(post._id)}}>Edit</button> 
+                       <button onClick={function () {setPostId(post._id), deletePost() }}>Delete</button>
                         </div>)}
+                        
             </div>
 
             {wantsToEdit ? <Editpostform myPostTitle={myPostTitle} wantsToEdit={wantsToEdit} setWantsToEdit={setWantsToEdit} postId={postId}/> : null}
@@ -82,8 +98,14 @@ const Userposts = () => {
                 <label className="newlocation">Location</label>
                 <input className="locationinput" type="text" value={locationString} onChange={event => {setLocationString(event.target.value)}}></input>
                 <label className="newwilldeliver">Will Deliver? :</label>
-                <input className="willdeliverselection" type="checkbox" value={willDeliver} onChange={event => setWillDeliver(true)}></input>
-                <button onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button>
+                <input className="willdeliverselection" type="checkbox"  onClick={function (event) {event.preventDefault(), setWillDeliver(true), console.log(willDeliver)}}></input>
+                <select className="deliveryoptions">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+
+                {/* <button onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button> */}
+
             </div>
 
             
