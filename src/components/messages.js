@@ -11,6 +11,7 @@ const Messages = () => {
     const [postId, setPostId] = useState('')
     const [recipientUsername, setRecipientUsername] = useState('')
     const [recipientTitle, setRecipientTitle] = useState('')
+    const [username, setUsername] = useState('')
 
     
   
@@ -22,14 +23,24 @@ const Messages = () => {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + userToken
+                    'Authorization': `Bearer ${userToken}` 
                 }
-            })
-            const data = await resp.json()
-            const messages = data.data.messages
-            console.log('data',data)
-            console.log('messages',messages)
+            }).then(response => response.json())
+            .then (result => {
+                const username = result.data.username
+                setUsername(username);
+            
+                //   const data = result.json()
+            const messages = result.data.messages
+            // console.log('data',data)
+            // console.log('messages',messages)
             setMessages(messages)
+            })
+            // const data = await resp.json()
+            // const messages = data.data.messages
+            // // console.log('data',data)
+            // // console.log('messages',messages)
+            // setMessages(messages)
             
             
         }
@@ -67,15 +78,16 @@ const Messages = () => {
                                             <div className='description'> Body: {message.content} </div>
 
                                             {/* {username = 'peter'}  */}
-                                            {/* {console.log ('this is my username', username)} */}
-                                            {message.fromUser.username === 'peter'
+                                            {/* {console.log ('this is my username', recipientUsername)} */}
+                                            {message.fromUser.username === username
                                             ? null :
                                           <button disabled={clickedMessage} onClick ={()=> {
                                                 setPostId(message.post._id)
                                                 console.log(postId)
+                                            
                                                 setRecipientUsername(message.fromUser.username)
                                                 setRecipientTitle(message.post.title)
-                                                //console.log(recipientUsername)
+                                                console.log(recipientUsername)
                                                 console.log(message.fromUser.username)
                                                 renderMessageForm(true)
                                             }}>Reply</button> }
