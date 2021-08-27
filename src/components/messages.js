@@ -11,6 +11,7 @@ const Messages = () => {
     const [postId, setPostId] = useState('')
     const [recipientUsername, setRecipientUsername] = useState('')
     const [recipientTitle, setRecipientTitle] = useState('')
+    const [username, setUsername] = useState('')
 
     
   
@@ -25,12 +26,15 @@ const Messages = () => {
                     'Authorization': 'Bearer ' + userToken
                 }
             })
-            const data = await resp.json()
-            const messages = data.data.messages
-            console.log('data',data)
-            console.log('messages',messages)
-            setMessages(messages)
+            .then(response => response.json())
+            .then(result => {
+                const username = result.data.username
+                setUsername(username)
+                const messages = result.data.messages
+                setMessages(messages)
+            })
             
+            console.log('messages',messages)
             
         }
         fetchMessages();
@@ -59,12 +63,13 @@ const Messages = () => {
         return <>
             <div className="sendandreceived">
                 <div className="received">
-                    {messages.map((message, index)=> {
+                    {messages.map((message, index)=> { console.log(message.fromUser.username)
                             return <> 
                                         <div className="message" key={index}>
                                             <div className="username">From: {message.fromUser.username}</div>
                                             <div className='title'> Title:{message.post.title} </div>
                                             <div className='description'> Body: {message.content} </div>
+                                            { message.fromUser.username === username ? null :
                                           <button disabled={clickedMessage} onClick ={()=> {
                                                 setPostId(message.post._id)
                                                 console.log(postId)
@@ -73,7 +78,7 @@ const Messages = () => {
                                                 //console.log(recipientUsername)
                                                 console.log(message.fromUser.username)
                                                 renderMessageForm(true)
-                                            }}>Reply</button> 
+                                            }}>Reply</button> }
                                             
                                         </div>
                                     </>
