@@ -13,6 +13,7 @@ const Userposts = () => {
     const [wantsToEdit, setWantsToEdit] = useState(false)
     const [myPostTitle, setMyPostTitle] = useState('')
     const [postId, setPostId] = useState('')
+    const toggleChecked = () => setWillDeliver(value => !value)
     
     useEffect(() => {
         const fetchMyPosts = async () => {
@@ -67,15 +68,9 @@ const Userposts = () => {
             result})
         }
         console.log(willDeliver)
-    console.log(myPostTitle)
+        console.log(myPostTitle)
 
-        function handleChange(){
-            if (document.getElementById("willdeliverselection").checked){
-                setWillDeliver(true)
-            } else {
-                setWillDeliver(false)
-            }
-        }
+  
 
     return (<>
         <div className="allmyposts">
@@ -110,11 +105,8 @@ const Userposts = () => {
                 
                 <input id="willdeliverselection" type="checkbox" onChange={function (event) { setWillDeliver(true)}}></input>
                 <label className="newwilldeliver">Will Not Deliver :</label>
-                <input id="willdeliverselection" type="checkbox" onChange={function (event) { setWillDeliver(false)}}></input>
-                {/* <select>
-                    <option value={true}>True</option>
-                    <option value={false}>False</option>
-                </select>   */}
+                <input id="willdeliverselection" type="checkbox" willDeliver={willDeliver} onChange={function () { toggleChecked}}></input>
+                
 
                 <button onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button>
 

@@ -65,7 +65,7 @@ const Messages = () => {
                                             <div className="username">From: {message.fromUser.username}</div>
                                             <div className='title'> Title:{message.post.title} </div>
                                             <div className='description'> Body: {message.content} </div>
-                                            <button disabled={clickedMessage} onClick ={()=> {
+                                          <button disabled={clickedMessage} onClick ={()=> {
                                                 setPostId(message.post._id)
                                                 console.log(postId)
                                                 setRecipientUsername(message.fromUser.username)
@@ -73,7 +73,7 @@ const Messages = () => {
                                                 //console.log(recipientUsername)
                                                 console.log(message.fromUser.username)
                                                 renderMessageForm(true)
-                                            }}>Reply</button>
+                                            }}>Reply</button> 
                                             
                                         </div>
                                     </>

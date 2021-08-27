@@ -10,6 +10,7 @@ const Postdetails = (props) => {
     function logoutUser () {
         setIsLoggedIn(false)
         setUserToken('')
+        localStorage.removeItem('token')
     }
 
     if (!featuredResult){

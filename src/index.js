@@ -13,19 +13,19 @@ const App = () => {
   const [userToken, setUserToken] = useState('')
   const [featuredResult, setFeaturedResult] = useState(null)
   const [clickedMessage, renderMessageForm] = useState(false)
+  const [showRegister, setShowRegister] = useState(false)
   // const [recipientUsername, setRecipientUsername] = useState('')
   // const [recipientTitle, setRecipientTitle] = useState('')
   
   
   return <div id="app">
    
-
       <div className="PostsScreen">
         <Posts
           isLoggedIn = {isLoggedIn}
           setIsLoggedIn = {setIsLoggedIn}
-          // userToken = {userToken}
-          // setUserToken = {setUserToken}
+          userToken = {userToken}
+          setUserToken = {setUserToken}
           featuredResult = {featuredResult}
           setFeaturedResult = {setFeaturedResult}
           clickedMessage={clickedMessage}
@@ -34,7 +34,7 @@ const App = () => {
           // setRecipientUsername={setRecipientUsername}
           
 
-        />
+        /> 
       </div>
       
       <div className="rightviewport">
@@ -72,6 +72,31 @@ const App = () => {
           {/* </Switch>
       </Router> */}
     {/* }  */}
+    { isLoggedIn ? <h3>YOUR ARE LOGGED IN!</h3> :
+    <h3>
+      <Route>
+      
+        {/* </Route> */}
+      {showRegister ? 
+        <Register
+            isLoggedIn ={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            userToken = {userToken}
+            setUserToken = {setUserToken}
+        /> : <Link className='registerbtn' onClick={()=> {
+          setShowRegister(true)
+          console.log(showRegister)
+        }}>
+          
+          New to Snap Attack? Sign up here!
+          </Link>
+    
+      }
+              </Route>
+​
+      </h3>
+    }
+
     </Router>
       </div>
       <div className="profileandmessages">

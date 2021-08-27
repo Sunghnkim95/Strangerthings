@@ -12,7 +12,6 @@ const Login = ({setIsLoggedIn, isLoggedIn, userToken, setUserToken}) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Authorization': bearer
             },
             body: JSON.stringify({
                 user: {
@@ -24,14 +23,14 @@ const Login = ({setIsLoggedIn, isLoggedIn, userToken, setUserToken}) => {
         .then(result => {
             
 
-            if(result.success){
+        
                 console.log(result)
                 setIsLoggedIn(true)
                 console.log("token", result.data.token)
                 setUserToken(result.data.token)
                 console.log(userToken)
                 localStorage.setItem("token", result.data.token)
-            }
+            
             return result
         })
         .catch(console.error)
