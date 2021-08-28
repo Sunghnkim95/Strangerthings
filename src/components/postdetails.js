@@ -6,12 +6,35 @@ const Postdetails = (props) => {
     const [postId, setPostId] = useState('')
     const [recipientUsername, setRecipientUsername] = useState('')
     const [recipientTitle, setRecipientTitle] = useState('')
+    const [username, setUsername] = useState('')
+    const userToken = localStorage.getItem("token")
+
+
+    useEffect(() => {
+        const fetchMessages = async () => {
+            const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/users/me', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${userToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(result => {
+                    const username = result.data.username
+                    setUsername(username)
+                })
+        }
+        fetchMessages();
+    }, [])
 
     function logoutUser() {
         setIsLoggedIn(false)
         setUserToken('')
         localStorage.removeItem('token')
     }
+
+
 
     if (!featuredResult) {
         return (<><div className="postdetails">
@@ -34,7 +57,7 @@ const Postdetails = (props) => {
                 <div className='featuredprice'>Price: {featuredResult.price}</div>
                 <div className='featureddescription'>Description: {featuredResult.description}</div>
                 <div className='featuredlocation'>Location: {featuredResult.location}</div>
-                <button className="replybtn" disabled={clickedMessage} onClick={
+                <button className="replybtn" disabled={clickedMessage || (featuredResult.author.username ==username)} onClick={
                     function () {
                         renderMessageForm(true)
                         setPostId(featuredResult._id)
@@ -42,6 +65,7 @@ const Postdetails = (props) => {
                         setRecipientTitle(featuredResult.title)
                         console.log(recipientUsername)
                         console.log(recipientTitle)
+                        
                     }
                 }>Reply</button>
 
