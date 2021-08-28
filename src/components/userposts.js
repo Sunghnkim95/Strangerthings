@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import Editpostform from './editpostform.js'
 
-const Userposts = () => {
+const Userposts = ({userToken}) => {
     const [myPosts, setMyPosts] = useState([])
-    const userToken = localStorage.getItem("token")
+    // const userToken = localStorage.getItem("token")
     const [titleString, setTitleString] = useState('')
     const [descriptionString, setDescriptionString] = useState('')
     const [priceString, setPriceString] = useState('')

@@ -6,11 +6,9 @@ import Userposts from './userposts.js'
 import Messages from './messages.js'
 import Newmessageform from './newmessageform.js'
 
-const Profile = () => {
+const Profile = ({userToken}) => {
 
     const [clickedMessage, renderMessageForm] = useState()
-    const userToken = localStorage.getItem("token")
-    console.log('token', userToken)
     return (
         <Router>
             <div>
@@ -23,10 +21,10 @@ const Profile = () => {
                 </nav>
                 <Switch>
                     <Route path="/myposts">
-                        <Userposts />
+                        <Userposts userToken={userToken} />
                     </Route>
                     <Route path="/mymessages">
-                        <Messages />
+                        <Messages userToken={userToken} />
                         {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} messageContent={messageContent} setContent={setContent} /> : null}
                     </Route>
                     <Route exact path="/">

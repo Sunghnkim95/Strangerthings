@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import Newmessageform from './newmessageform.js'
 
-const Messages = () => {
+const Messages = ({userToken}) => {
 
-    const userToken = localStorage.getItem("token")
+    // const userToken = localStorage.getItem("token")
     const [messages, setMessages] = useState([])
     const [clickedMessage, renderMessageForm] = useState(false)
     const [postId, setPostId] = useState('')
@@ -37,7 +37,6 @@ const Messages = () => {
             <div className="received">
                 <h1 className="mssgetext">Messages</h1>
                 {messages.map((message, index) => {
-                    console.log(message.fromUser.username)
                     return <>
 
                         <div className="message" key={index}>
