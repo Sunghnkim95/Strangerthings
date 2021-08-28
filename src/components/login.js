@@ -62,11 +62,8 @@ const Login = ({setIsLoggedIn, isLoggedIn, userToken, setUserToken}) => {
             }}>
             </input>
             
-            {/* { isLoggedIn ? <button onClick={()=> {
-                logoutUser()
-            }}
-            >Logout</button>  : */}
-              <button onClick={()=> {
+
+              <button className="loginBtn" onClick={()=> {
                 loginUser(usernameString, passwordString)
             }
             }

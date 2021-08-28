@@ -40,13 +40,13 @@ const Posts = (props) => {
             const posts = data.data.posts
             setPosts(posts)
             console.log(posts)
-            for(let i=0; i<posts.length; i++){
+        //     for(let i=0; i<posts.length; i++){
                 
-                if (posts[i].author.username === 'peter'){
-                    posts[i].isAuthor = true;
+        //         if (posts[i].author.username === 'peter'){
+        //             posts[i].isAuthor = true;
                     
-                }
-        }
+        //         }
+        // }
     }
         fetchPosts();
     }, [isLoggedIn, userToken])
@@ -64,10 +64,11 @@ const Posts = (props) => {
     <h1 className="posttitle">
         Posts
     </h1>
-    <label>Search Posts</label>
-    <input  onChange={event => setSearchTerm(event.target.value)}></input>
-    <button>Search</button>
-    <br></br>
+    <div className="SearchEverything">
+    <label className="SearchText">Search Posts</label>
+    <input className="SearchInput" onChange={event => setSearchTerm(event.target.value)}></input>
+    {/* <button className="SearchBtn">Search</button> */}
+    </div>
 
     {postsToDisplay.map( post => { return <div className="post" key={post._id} onClick={(event) => {
         event.preventDefault();

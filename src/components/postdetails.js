@@ -6,6 +6,10 @@ const Postdetails = (props) => {
     const [postId, setPostId] = useState('')
     const [recipientUsername, setRecipientUsername] = useState('')
     const [recipientTitle, setRecipientTitle] = useState('')
+    // const [username, setUsername] = useState('')
+    // const userToken = localStorage.getItem("token")
+
+
 
     function logoutUser () {
         setIsLoggedIn(false)
@@ -13,11 +17,41 @@ const Postdetails = (props) => {
         localStorage.removeItem('token')
     }
 
+    // useEffect(() => {
+    //     console.log('Bearer ', userToken)
+    //     fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/users/me', {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': `Bearer ${userToken}` 
+    //     },
+    // }).then(response => response.json())
+    // .then (result => {
+
+    //     if (!featuredResult){
+    //         return ( <><div className="postdetails">
+    //                     <h1>Featured Post</h1>
+    //                 <span className="clickformore">Click a Post for more info!</span>
+    //                 <button onClick={()=>{
+    //                                  logoutUser()
+    //                              }}>LogOut</button>
+    //         </div></>)
+    //     }
+    //     console.log(result);
+    //     const username = result.data.username
+    //     console.log(result.data.username)
+    //     setUsername(username);
+  
+    //         console.log()
+
+    // })
+    // .catch(console.error)
+    // }, [userToken])
+
     if (!featuredResult){
         return ( <><div className="postdetails">
                     <h1>Featured Post</h1>
                 <span className="clickformore">Click a Post for more info!</span>
-                <button onClick={()=>{
+                <button className="logOutinFeaturePost" onClick={()=>{
                                  logoutUser()
                              }}>LogOut</button>
         </div></>)
@@ -30,11 +64,13 @@ const Postdetails = (props) => {
                   <h1>Featured Post</h1>
                 
                   <div key="featuredresult">
-                              <div className='title'> Title:{featuredResult.title} </div>
-                              <div className='price'>Price: {featuredResult.price}</div>
-                              <div className='description'>Description: {featuredResult.description}</div>
-                              <div className='location'>Location: {featuredResult.location}</div>
-                              <div className='willdeliver'>Will Deliver? : {featuredResult.willDeliver}</div>
+                              <div className='featuredtitle'> Title:{featuredResult.title} </div>
+                              <div className='featuredprice'>Price: {featuredResult.price}</div>
+                              <div className='featureddescription'>Description: {featuredResult.description}</div>
+                              <div className='featuredlocation'>Location: {featuredResult.location}</div>
+                              {/* <div className='featuredwilldeliver'>Will Deliver? : {featuredResult.willDeliver}</div> */}
+                              
+                              {/* { post.author.username === username ? null : */}
                               <button className="replybtn" disabled={clickedMessage} onClick={
                                   function(){
                                      renderMessageForm(true)
@@ -43,9 +79,12 @@ const Postdetails = (props) => {
                                      setRecipientTitle(featuredResult.title)
                                      console.log(recipientUsername)
                                      console.log(recipientTitle)
+                                     console.log(username)
                                   }
                               }>Reply</button> 
-                             <button onClick={()=>{
+                            {/* } */}
+
+                             <button className="logOutBtn" onClick={()=>{
                                  logoutUser()
                                  
                              }}>LogOut</button>

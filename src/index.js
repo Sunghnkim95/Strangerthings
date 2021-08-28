@@ -19,7 +19,7 @@ const App = () => {
   
   
   return <div id="app">
-   
+   <div className="rightAndLeftScreen">
       <div className="PostsScreen">
         <Posts
           isLoggedIn = {isLoggedIn}
@@ -39,65 +39,33 @@ const App = () => {
       
       <div className="rightviewport">
         <Router>
-          {isLoggedIn ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken} clickedMessage={clickedMessage}  renderMessageForm={renderMessageForm} />  : <Login isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken}/>}
-        
+          {isLoggedIn ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} 
+            userToken={userToken} setUserToken={setUserToken} clickedMessage={clickedMessage}  renderMessageForm={renderMessageForm} />  : <Login isLoggedIn = {isLoggedIn} 
+            setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken}/>}
 
-
-    {/* {  isLoggedIn ? <Postdetails /> : */}
-      {/* <Router>        
-          <Switch> 
-            <Route path ="/login">
-              <Link className="signup" to='/Register'>
-                New to Snap Attack? Sign up here!
-              </Link> */}
-              {/* <Login                  
-                isLoggedIn ={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                userToken = {userToken}
-                setUserToken = {setUserToken}
-                /> */}
-            {/* </Route>
-            <Route path ="/Register">
-              <Link className="signup" to="/login">
-                  Already have an account? Login here!
-              </Link>
-                <Register
-                isLoggedIn ={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                userToken = {userToken}
-                setUserToken = {setUserToken}
-                />
-            </Route> */}
-            
-          {/* </Switch>
-      </Router> */}
-    {/* }  */}
-    { isLoggedIn ? <h3>YOUR ARE LOGGED IN!</h3> :
-    <h3>
-      <Route>
-      
-        {/* </Route> */}
-      {showRegister ? 
-        <Register
-            isLoggedIn ={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-            userToken = {userToken}
-            setUserToken = {setUserToken}
-        /> : <Link className='registerbtn' onClick={()=> {
-          setShowRegister(true)
-          console.log(showRegister)
-        }}>
-          
-          New to Snap Attack? Sign up here!
-          </Link>
-    
-      }
+          <div className="signup">
+          { isLoggedIn ? <h3>YOUR ARE LOGGED IN!</h3> :
+            <h3>
+              <Route>
+                {showRegister ? 
+                  <Register
+                    isLoggedIn ={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    userToken = {userToken}
+                    setUserToken = {setUserToken}/> 
+                    : <Link className='registerbtn' onClick={()=> {
+                      setShowRegister(true)
+                      console.log(showRegister)
+                    }}>
+                      New to Snap Attack? Sign up here!
+                    </Link>
+                }
               </Route>
-​
-      </h3>
-    }
-
-    </Router>
+  ​          </h3>
+          }
+          </div>
+        </Router>
+      </div>
       </div>
       <div className="profileandmessages">
         {isLoggedIn ? <Profile

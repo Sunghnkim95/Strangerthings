@@ -14,13 +14,15 @@ const Profile = () => {
     return (
         <Router>
             <div>
-                <nav>
-                    <img className="logo" src='https://placekitten.com/50/50'></img>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/myposts">My Posts</Link></li>
-                        <li><Link to="/mymessages">Messages</Link></li>
-                    </ul>
+            <img className="logo" src='https://placekitten.com/50/50'></img>
+
+                <nav className="navi">
+                    {/* <img className="logo" src='https://placekitten.com/50/50'></img> */}
+                  
+                        <div className='naviHome'><Link to="/">Home</Link></div>
+                        <div className='naviPost'><Link to="/myposts">My Posts</Link></div>
+                        <div className='naviMessage'><Link to="/mymessages">Messages</Link></div>
+                    
                 </nav>
                 <Switch>
                     <Route path="/myposts">
@@ -31,7 +33,7 @@ const Profile = () => {
                         {clickedMessage ? <Newmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} messageContent = {messageContent} setContent={setContent}  /> : null}
                     </Route>
                     <Route exact path="/">
-                        HOME COMPONENT GOES HERE
+                        <div className="welcome">WELCOME TO SNAP ATTACK!!!</div>
                     </Route>
                 </Switch>
             </div>

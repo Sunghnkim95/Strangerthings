@@ -41,19 +41,19 @@ const Editpostform = ({myPostTitle, setWantsToEdit, wantsToEdit, postId}) => {
 
     return <>
                 <div className="editpostform">
-                <h1>Edit Your Post: {myPostTitle}</h1>
-                    <label className="newtitle">Title: </label>
-                    <input className="titleinput" type="text" value={titleString} onChange={event => {setTitleString(event.target.value)}}></input>
-                    <label className="newdescription">Description: </label>
-                    <input className="descriptioninput" type="text" value= {descriptionString} onChange={event => {setDescriptionString(event.target.value)}}></input>
-                    <label className="newprice">Price: </label>
-                    <input className="priceinput" type="text" value={priceString} onChange={event => {setPriceString(event.target.value)}}></input>
-                    <label className="newlocation">Location: </label>
-                    <input className="locationinput" type="text" value={locationString} onChange={event => {setLocationString(event.target.value)}}></input>
-                    <label className="newwilldeliver">Will Deliver? :</label>
-                    <input className="willdeliverselection" type="checkbox" value={willDeliver} onChange={event => setWillDeliver(true)}></input>
-                    <button onClick={function () {editPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Edit Post</button>
-                    <button onClick={cancelEdit}>Cancel</button>
+                <h1 className="editposttext">Edit Your Post: {myPostTitle}</h1>
+                    <label className="editnewtitle">Title: </label>
+                    <input className="edittitleinput" type="text" value={titleString} onChange={event => {setTitleString(event.target.value)}}></input>
+                    <label className="editnewdescription">Description: </label>
+                    <input className="editdescriptioninput" type="text" value= {descriptionString} onChange={event => {setDescriptionString(event.target.value)}}></input>
+                    <label className="editnewprice">Price: </label>
+                    <input className="editpriceinput" type="text" value={priceString} onChange={event => {setPriceString(event.target.value)}}></input>
+                    <label className="editnewlocation">Location: </label>
+                    <input className="editlocationinput" type="text" value={locationString} onChange={event => {setLocationString(event.target.value)}}></input>
+                    <label className="editnewwilldeliver">Will Deliver? :</label>
+                    <input className="editwilldeliverselection" type="checkbox" value={willDeliver} onChange={event => setWillDeliver(true)}></input>
+                    <button className="editbtn" onClick={function () {editPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Edit Post</button>
+                    <button className="canceleditbtn"onClick={cancelEdit}>Cancel</button>
                 </div>
             </>
 

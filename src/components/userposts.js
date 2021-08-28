@@ -78,13 +78,13 @@ const Userposts = () => {
             <div className="myposts">
                 <h1>POSTLIST</h1>
                 {myPosts.map( post => <div key={post._id}>
-                       <div className='title'> Title: {post.title} </div>
-                       <div className='description'> Description: {post.description}  </div>
-                       <div className='description'> Price: {post.price}  </div>
-                       <div className='location'> Location: {post.location}</div>
-                       <div className='location'> Will Deliver? : {post.willDeliver}</div>
-                       <button onClick={function (){setWantsToEdit(true), console.log(post._id),setMyPostTitle(post.title), setPostId(post._id)}}>Edit</button> 
-                       <button onClick={function () {setPostId(post._id), deletePost() }}>Delete</button>
+                       <div className='usertitle'> Title: {post.title} </div>
+                       <div className='userdescription'> Description: {post.description}  </div>
+                       <div className='userprice'> Price: {post.price}  </div>
+                       <div className='userlocation'> Location: {post.location}</div>
+                       {/* <div className='userdeliver'> Will Deliver? : {post.willDeliver}</div> */}
+                       <button className="usereditbtn" onClick={function (){setWantsToEdit(true), console.log(post._id),setMyPostTitle(post.title), setPostId(post._id)}}>Edit</button> 
+                       <button className="userdeletebtn" onClick={function () {setPostId(post._id), deletePost() }}>Delete</button>
                         </div>)}
                         
             </div>
@@ -92,7 +92,7 @@ const Userposts = () => {
             {wantsToEdit ? <Editpostform myPostTitle={myPostTitle} wantsToEdit={wantsToEdit} setWantsToEdit={setWantsToEdit} postId={postId}/> : null}
 
             <div className="newpost">
-               <h1>CREATE NEW POST</h1>
+               <h1 className="creatnewposttext">CREATE NEW POST</h1>
                 <label className="newtitle">Title</label>
                 <input className="titleinput" type="text" value={titleString} onChange={event => {setTitleString(event.target.value)}}></input>
                 <label className="newdescription">Description</label>
@@ -104,11 +104,11 @@ const Userposts = () => {
                 <label className="newwilldeliver">Will Deliver :</label>
                 
                 <input id="willdeliverselection" type="checkbox" onChange={function (event) { setWillDeliver(true)}}></input>
-                <label className="newwilldeliver">Will Not Deliver :</label>
-                <input id="willdeliverselection" type="checkbox" willDeliver={willDeliver} onChange={function () { toggleChecked}}></input>
+                {/* <label className="newwilldeliver">Will Not Deliver :</label>
+                <input id="willdeliverselection" type="checkbox" willDeliver={willDeliver} onChange={function () { toggleChecked}}></input> */}
                 
 
-                <button onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button>
+                <button className="createbtn" onClick={function () {newPost(titleString, descriptionString, priceString, locationString, willDeliver)}}>Create Post</button>
 
             </div>
 
