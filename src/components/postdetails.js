@@ -1,245 +1,59 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Featuredmessageform from './featuredmessageform.js'
 
 const Postdetails = (props) => {
-    const {featuredResult, setIsLoggedIn, setUserToken, clickedMessage, renderMessageForm} = props
+    const { featuredResult, setIsLoggedIn, setUserToken, clickedMessage, renderMessageForm } = props
     const [postId, setPostId] = useState('')
     const [recipientUsername, setRecipientUsername] = useState('')
     const [recipientTitle, setRecipientTitle] = useState('')
-    // const [username, setUsername] = useState('')
-    // const userToken = localStorage.getItem("token")
 
-
-
-    function logoutUser () {
+    function logoutUser() {
         setIsLoggedIn(false)
         setUserToken('')
         localStorage.removeItem('token')
     }
 
-    // useEffect(() => {
-    //     console.log('Bearer ', userToken)
-    //     fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/users/me', {
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': `Bearer ${userToken}` 
-    //     },
-    // }).then(response => response.json())
-    // .then (result => {
-
-    //     if (!featuredResult){
-    //         return ( <><div className="postdetails">
-    //                     <h1>Featured Post</h1>
-    //                 <span className="clickformore">Click a Post for more info!</span>
-    //                 <button onClick={()=>{
-    //                                  logoutUser()
-    //                              }}>LogOut</button>
-    //         </div></>)
-    //     }
-    //     console.log(result);
-    //     const username = result.data.username
-    //     console.log(result.data.username)
-    //     setUsername(username);
-  
-    //         console.log()
-
-    // })
-    // .catch(console.error)
-    // }, [userToken])
-
-    if (!featuredResult){
-        return ( <><div className="postdetails">
-                    <h1>Featured Post</h1>
-                <span className="clickformore">Click a Post for more info!</span>
-                <button className="logOutinFeaturePost" onClick={()=>{
-                                 logoutUser()
-                             }}>LogOut</button>
+    if (!featuredResult) {
+        return (<><div className="postdetails">
+            <h1>Featured Post</h1>
+            <span className="clickformore">Click a Post for more info!</span>
+            <button className="logOutinFeaturePost" onClick={() => {
+                logoutUser()
+            }}>LogOut</button>
         </div></>)
     }
 
-    const {title, price, location, description, willDeliver} = featuredResult
+    const { title, price, location, description, willDeliver } = featuredResult
 
     return (<>
-                  <div className="postdetails">
-                  <h1>Featured Post</h1>
-                
-                  <div key="featuredresult">
-                              <div className='featuredtitle'> Title:{featuredResult.title} </div>
-                              <div className='featuredprice'>Price: {featuredResult.price}</div>
-                              <div className='featureddescription'>Description: {featuredResult.description}</div>
-                              <div className='featuredlocation'>Location: {featuredResult.location}</div>
-                              {/* <div className='featuredwilldeliver'>Will Deliver? : {featuredResult.willDeliver}</div> */}
-                              
-                              {/* { post.author.username === username ? null : */}
-                              <button className="replybtn" disabled={clickedMessage} onClick={
-                                  function(){
-                                     renderMessageForm(true)
-                                     setPostId(featuredResult._id)
-                                     setRecipientUsername(featuredResult.author.username)
-                                     setRecipientTitle(featuredResult.title)
-                                     console.log(recipientUsername)
-                                     console.log(recipientTitle)
-                                     console.log(username)
-                                  }
-                              }>Reply</button> 
-                            {/* } */}
+        <div className="postdetails">
+            <h1>Featured Post</h1>
 
-                             <button className="logOutBtn" onClick={()=>{
-                                 logoutUser()
-                                 
-                             }}>LogOut</button>
+            <div key="featuredresult">
+                <div className='featuredtitle'> Title:{featuredResult.title} </div>
+                <div className='featuredprice'>Price: {featuredResult.price}</div>
+                <div className='featureddescription'>Description: {featuredResult.description}</div>
+                <div className='featuredlocation'>Location: {featuredResult.location}</div>
+                <button className="replybtn" disabled={clickedMessage} onClick={
+                    function () {
+                        renderMessageForm(true)
+                        setPostId(featuredResult._id)
+                        setRecipientUsername(featuredResult.author.username)
+                        setRecipientTitle(featuredResult.title)
+                        console.log(recipientUsername)
+                        console.log(recipientTitle)
+                    }
+                }>Reply</button>
 
-                             {clickedMessage ? <Featuredmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} postId={postId} recipientUsername={recipientUsername} recipientTitle={recipientTitle} /> : null}
-                             
-                             
-                 </div>
-             </div>
-    
-     </>)
-                
+                <button className="logOutBtn" onClick={() => {
+                    logoutUser()
+                }}>LogOut</button>
+                {clickedMessage ? <Featuredmessageform clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} postId={postId} recipientUsername={recipientUsername} recipientTitle={recipientTitle} /> : null}
+            </div>
+        </div>
+
+    </>)
+
 }
-
-// const Postdetails = () => {
-
-//     const [firstFeaturedPost, setFirstFeaturedPost] = useState([])
-    
-//     useEffect(() => {
-//         const fetchFeaturedPost = async () => {
-//             const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/posts')
-//             const data = await resp.json()
-//             const posts = data.data.posts
-//             const firstFeaturedPost=posts[0]
-//             setFirstFeaturedPost(firstFeaturedPost)
-//             console.log(firstFeaturedPost)
-//         }
-//         fetchFeaturedPost();
-//     }, [])
-
-//     return (<>
-    
-//              <div className="postdetails">
-//                  <h1>Featured Post</h1>
-                
-//                  <div key="firstpost">
-//                              <div className='title'> Title:{firstFeaturedPost.title} </div>
-//                              <div className='price'>Price: {firstFeaturedPost.price}</div>
-//                              <div className='description'>Description: {firstFeaturedPost.description}</div>
-//                              <div className='location'>Location: {firstFeaturedPost.location}</div>
-//                              <div className='willdeliver'>Will Deliver? : {firstFeaturedPost.willDeliver}</div>
-//                 </div>
-//             </div>
-    
-//     </>)
-
-
-// }
-
- // const [post, setPost] = useState()
-    
-    //     useEffect(() => {
-    //             fetch('https://strangers-things.herokuapp.com/api/2105-VPI-RM-WEB-PT/posts')
-    //             .then((res) => res.json())
-    //             .then((post) => {
-    //                 setPost(post)
-    //                 console.log('post',post)
-    //             })
-    //             .catch((err)=> {
-    //                 console.log(err);
-    //             });
-    //     }, [])
-         
-    //     return (<>
-       
-    //         <div className="postdetails">
-    //             <h1>Featured Post</h1>
-                
-    //             <div key="firstpost">
-    //                         <div className='title'> Title: </div>
-    //                         <div className='price'> Price: </div>
-    //                         <div className='location'> Location: </div>
-    //                         <div className='description'> Description: </div>
-    //                         <div className='deliver'> Will Deliver?: </div>
-    //                         <div className='date'> Created At: </div>
-                            
-    //             </div>
-    
-    //         </div>
-    
-    //     </> );
-// const Postdetails = () => {
-
-//    async function fetchPost () {
-//         const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-RM-WEB-PT/posts')
-//         const data = await resp.json()
-//         console.log(data)
-//         const post= data.data.posts[0]
-//         console.log('post', post)
-//         return post
-//     }
-    
-//    fetchPost()
-
-//         return <>
-   
-//         <div className="postdetails">
-//             <h1>Featured Post</h1>
-            
-//            { <div key="firstpost">
-//                         <div className='title'> Title: </div>
-//                         <div className='price'> Price: </div>
-//                         <div className='location'> Location: </div>
-//                         <div className='description'> Description: </div>
-//                         <div className='deliver'> Will Deliver?: </div>
-//                         <div className='date'> Created At: </div>
-                        
-//             </div>}
-
-//         </div>
-
-//     </> 
-// }
-
-
-// const Postdetails =  () => {
-
-//     const [posts, setPosts] = useState([])
-//     console.log('posts', posts)
-
-//     useEffect(() => {
-//         const fetchPosts = async () => {
-//             const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-RM-WEB-PT/posts')
-//             const data = await resp.json()
-//             const posts = data.data.posts
-//             setPosts(posts)
-//             console.log(posts)
-//         }
-//         fetchPosts()
-        
-//     }, [])
-     
-//     console.log(posts)
-    
-    
-    
-
-//     return <>
-   
-//         <div className="postdetails">
-//             <h1>Featured Post</h1>
-            
-//             <div key="firstpost">
-//                         <div className='title'> Title: </div>
-//                         <div className='price'> Price: </div>
-//                         <div className='location'> Location: </div>
-//                         <div className='description'> Description: </div>
-//                         <div className='deliver'> Will Deliver?: </div>
-//                         <div className='date'> Created At: </div>
-                        
-//             </div>
-
-//         </div>
-
-//     </> 
-// }
 
 export default Postdetails;
