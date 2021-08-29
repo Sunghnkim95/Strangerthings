@@ -10,24 +10,6 @@ const Postdetails = (props) => {
     const userToken = localStorage.getItem("token")
 
 
-    useEffect(() => {
-        const fetchMessages = async () => {
-            const resp = await fetch('https://strangers-things.herokuapp.com/api/2105-VPI-WEB-PT/users/me', {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${userToken}`
-                }
-            })
-                .then(response => response.json())
-                .then(result => {
-                    const username = result.data.username
-                    setUsername(username)
-                })
-        }
-        fetchMessages();
-    }, [])
-
     function logoutUser() {
         setIsLoggedIn(false)
         setUserToken('')
@@ -57,7 +39,7 @@ const Postdetails = (props) => {
                 <div className='featuredprice'>Price: {featuredResult.price}</div>
                 <div className='featureddescription'>Description: {featuredResult.description}</div>
                 <div className='featuredlocation'>Location: {featuredResult.location}</div>
-                <button className="replybtn" disabled={clickedMessage || (featuredResult.author.username ==username)} onClick={
+                <button className="replybtn" onClick={
                     function () {
                         renderMessageForm(true)
                         setPostId(featuredResult._id)

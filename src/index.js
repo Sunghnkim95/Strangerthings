@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
@@ -16,6 +16,12 @@ const App = () => {
   const [clickedMessage, renderMessageForm] = useState(false)
   const [showRegister, setShowRegister] = useState(false)
 
+  useEffect(()=> {
+    
+      if (localStorage.getItem("token") ){  
+        setUserToken( localStorage.getItem("token") )
+      } 
+  }, [userToken])
 
   return <div id="app">
     <div className="rightAndLeftScreen">
@@ -34,7 +40,7 @@ const App = () => {
 
       <div className="rightviewport">
         <Router>
-          {isLoggedIn ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+          { userToken ? <Postdetails featuredResult={featuredResult} setFeaturedResult={setFeaturedResult} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
             userToken={userToken} setUserToken={setUserToken} clickedMessage={clickedMessage} renderMessageForm={renderMessageForm} /> : <Login isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn} userToken={userToken} setUserToken={setUserToken} />}
 
