@@ -17,3 +17,4 @@ Authenticated users:
 - View all posts
 - Filter posts
 
+Credits to: Sean Conte(SeanC878)
